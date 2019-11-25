@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "MyApplicationView";
+}
+
+<center>
+<form method="post">
+    <div class="container">
+        <h1>Register</h1>
+
+        <hr>
+
+        <label for="Name"><b>Name</b></label>
+        <input type="text" placeholder="Enter Name" id="txtstdName" required>
+        <hr>
+
+        <label for="Course"><b>Course</b></label>
+        <input type="text" placeholder="Enter Course" id="txtCourse" required>
+        <hr>
+        <label for="Email"><b>Email</b></label>
+        <input type="email" placeholder="Enter Email" id="txtEmail" required>
+        <hr>
+
+        <label for="Marks"><b>Marks</b></label>
+        <input type="text" placeholder="Enter Marks" id="txtMarks" required>
+        <hr>
+
+
+        <button type="button" class="submit" id="btnSubmit">Submit</button>
+    </div>
+
+    
+</form>
+    </center>
+
+
+<style>
+
+
+    * {box-sizing: border-box}
+
+
+.container {
+  padding: 16px;
+}
+
+input[type=text], input[type=email] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=email]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+   width: 30%;
+}
+
+
+.submit {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.9;
+}
+
+.submit:hover {
+  opacity:1;
+}
+
+a {
+  color: dodgerblue;
+}
+
+    </style>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            var data = new FormData;
+            data.append("Name", $('#txtstdName').val());
+            data.append("Course", $('#txtCourse').val());
+            data.append("Email", $('#txtEmail').val());
+            data.append("Marks", $('#txtMarks').val());
+
+            console.log(JSON.stringify(data));
+
+            jQuery.ajax({
+                method: "POST",
+                url: "/MyApplication/MyApplicationView",
+                data: data,
+                datatype: 'json',
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                       location.href =  
+              "/MyApplication/Details"; 
+                }
+
+            });
+            
+
+        });
+     });
+
+
+</script>

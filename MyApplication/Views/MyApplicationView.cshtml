@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "MyApplicationView";
+}
+
+<h2>MyApplicationView</h2>
+<div>
+    <form method="post">
+    <label>Student Name</label><input type="text" name="txtstdname"/>
+    <label>Photo</label><input type="text" name="txtphoto"/>
+    <label>Height</label><input type="text" name="txtheight"/>
+    <label>Weight</label><input type="text" name="txtweight"/>
+    <input type="button" value="submit" onclick=btnClick()/>
+    </form>
+</div>
+<script>
+    $(document).ready(function () {
+        function BtnClick() {
+            var name = $("#txtstname").val();
+            var photo = $("#txtphoto").val();
+            var height = $("#txtheight").val();
+            var weight = $("#txtweight").val();
+            var obj = { StudentName: name, Photo: photo, Height: height, Weight: weight }
+            submitform(obj);
+        }
+        function submitform(obj) {
+            $.ajax({
+                url: "MyApplication/MyApplicationView",
+                method: "POST",
+                data: obj,
+                success: alert("success")
+
+
+            });
+
+        }
+
+    })
+</script>
